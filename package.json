@@ -17,5 +17,13 @@
     "faker": "^4.1.0",
     "pg": "^7.10.0",
     "sequelize": "^5.7.4"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Fahmisutansyah/mafiaWars-pairProject.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Fahmisutansyah/mafiaWars-pairProject/issues"
+  },
+  "homepage": "https://github.com/Fahmisutansyah/mafiaWars-pairProject#readme"
 }
