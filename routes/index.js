@@ -14,5 +14,9 @@ routes.get('/login/:id', function (req, res) {
         })
         .catch(err => res.json(err))
 })
+routes.get('/logout', function (req, res) {
+    req.session.player = null
+    res.json(req.session.player)
+})
 
 module.exports = routes

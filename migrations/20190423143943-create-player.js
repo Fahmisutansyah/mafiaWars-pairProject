@@ -27,6 +27,10 @@ module.exports = {
         type: Sequelize.INTEGER,
         defaultValue:0
       },
+      energy: {
+        type: Sequelize.INTEGER,
+        defaultValue:0
+      },
       email: {
         type: Sequelize.STRING
       },

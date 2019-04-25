@@ -7,7 +7,7 @@ const basePower=5
 
 
 const generate = size => Array.from(Array(size), (o_o,i) => ({
-  name: `item-${faker.name.firstName()}`,
+  name: `item-${faker.name.firstName()}-${~~((Math.random())*50)}`,
   type: ['weapon','shield'][~~(Math.random()*2)],
   price: (((i%50)+1)*basePrice) + ((i%50)+1) * (~~(Math.random()*(basePrice+100))+basePrice),
   minLevel: (i%50)+1,
@@ -43,7 +43,7 @@ module.exports = {
 
 
 
-    return queryInterface.bulkInsert('Items', generate(100), {});
+    return queryInterface.bulkInsert('Items', generate(200), {});
   },
 
   down: (queryInterface, Sequelize) => {
