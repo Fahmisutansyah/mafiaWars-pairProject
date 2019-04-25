@@ -3,12 +3,22 @@ module.exports = (sequelize, DataTypes) => {
   const Player = sequelize.define('Player', {
     username: DataTypes.STRING,
     password: DataTypes.STRING,
-    experience: DataTypes.INTEGER,
-    level: DataTypes.INTEGER,
-    energy: DataTypes.INTEGER,
-    money: DataTypes.INTEGER,
+    experience: {
+      type:DataTypes.INTEGER,
+      defaultValue: 0
+    },
+    level: {
+      type: DataTypes.INTEGER,
+      defaultValue: 1
+    },
+    money: {
+      type:DataTypes.INTEGER,
+      defaultValue: 5000
+    },
     email: DataTypes.STRING,
-    image: DataTypes.STRING
+    image: {
+      type: DataTypes.STRING,
+      defaultValue: '/images/default.png'}
   }, {});
   const Op = sequelize.Sequelize.Op
   const Item = sequelize.models.Item
@@ -21,7 +31,6 @@ module.exports = (sequelize, DataTypes) => {
     Player.hasMany(models.Game, { as: 'attacker', foreignKey: 'attackerId', otherKey: 'defenderId' })
     Player.belongsToMany(models.Item, { through: 'PlayerItems', foreignKey: 'playerId' })
     Player.belongsToMany(models.Property, { through: 'PlayerProperties', foreignKey: 'playerId' })
-
 
   };
 
