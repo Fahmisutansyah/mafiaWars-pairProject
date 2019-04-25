@@ -8,7 +8,17 @@ route.get('/',(req,res)=>{
     res.send(req.body)
 })
 route.post('/',(req,res)=>{
-    res.send(req.body)
+    let hash = bcrypt.hashSync(req.body.password,10)
+    req.body.password = hash
+    Player.create(req.body)
+    .then(newPlayer=>{
+        let msg = `Welcome! Now you may login`
+        res.redirect(`/login?notif=${msg}`)
+    })
+    .catch(err=>{
+        let msg = `Something went wrong`
+        res.redirect(`/login?err=${msg}`)
+    })
 })
 
 module.exports = route
