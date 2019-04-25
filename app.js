@@ -17,6 +17,7 @@ app.use('/register', require('./routes/register'))
 app.use('/logout',require('./routes/logout'))
 app.use(checkLogin)
 app.use('/home', require('./routes/home'))
+app.use('/shop',require('./routes/shop'))
 
 app.listen(port, ()=>{
     console.log(`server is running at port ${port}`)
