@@ -7,8 +7,8 @@ route.use(bodyParser.urlencoded({extended:true}))
 
 route.get('/',(req,res)=>{
     delete req.session.player
-    // res.redirect('/login')
-    res.send(req.session)
+    res.redirect('/login')
+    // res.send(req.session)
 })
 
 module.exports = route

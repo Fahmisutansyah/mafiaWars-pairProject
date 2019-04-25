@@ -3,11 +3,22 @@ module.exports = (sequelize, DataTypes) => {
   const Player = sequelize.define('Player', {
     username: DataTypes.STRING,
     password: DataTypes.STRING,
-    experience: DataTypes.INTEGER,
-    level: DataTypes.INTEGER,
-    money: DataTypes.INTEGER,
+    experience: {
+      type:DataTypes.INTEGER,
+      defaultValue: 0
+    },
+    level: {
+      type: DataTypes.INTEGER,
+      defaultValue: 1
+    },
+    money: {
+      type:DataTypes.INTEGER,
+      defaultValue: 5000
+    },
     email: DataTypes.STRING,
-    image: DataTypes.STRING
+    image: {
+      type: DataTypes.STRING,
+      defaultValue: '/images/default.png'}
   }, {});
   Player.associate = function(models) {
     // associations can be defined here
