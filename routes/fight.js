@@ -1,6 +1,6 @@
 const routes = require('express').Router()
 const Op = require('sequelize').Op
-const { Player, Item,Game } = require('../models')
+const { Player, Item, Game } = require('../models')
 
 routes.get('/', function (req, res) {
     Player.findByPk(req.session.player.id, {
@@ -13,11 +13,12 @@ routes.get('/', function (req, res) {
             // res.json({
             //     title: `fighting pit`,
             //     features: [`choose weapon`, 'choose enemy'],
+            //     weapons: player.Items,
             //     player,
             //     enemies: fightData
             // })
 
-            
+
 
             res.render('../views/fightStart.ejs', {
                 title: `fighting pit`,
@@ -34,21 +35,26 @@ routes.get('/', function (req, res) {
 
 
 routes.post('/', function (req, res) {
-    console.log(req.body)
+    // console.log(req.body)
     // res.json(req.body)
-    // attackerId: DataTypes.INTEGER,
-    // defenderId: DataTypes.INTEGER,
-    // attack: DataTypes.INTEGER,
-    // defend: DataTypes.INTEGER,
-    // counter: DataTypes.INTEGER
-    Promise.call ([
-        Item.findAll({where:{id:{[Op.or]:weapons}}}),
+    if (!Array.isArray(req.body.weapons)) req.body.weapons = [req.body.weapons]
+    //looading data for session
+    Promise.call([
+        Item.findAll({ where: { id: { [Op.or]: req.body.weapons } } }),
+        // Player.findByPk(req.session.player.id),
+        Player.findByPk(req.body.enemy)
+    ]).then(([weapons, enemy])=> {
+        
+    }).catch(err => {
+        console.log(err)
+        res.send(err)
+    })
 
-    ])
-    
 
 
-    Game.create({attackerId:req.session.player.id,defenderId:enemy, attack:weapon, defend:1000, counter: 5})
+
+
+
     // then(([player, fightData]) => res.json({
     //     title: `fighting pit`,
     //     features: [`choose weapon`, 'choose enemy'],

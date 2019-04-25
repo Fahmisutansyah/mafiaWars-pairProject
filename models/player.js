@@ -4,7 +4,7 @@ module.exports = (sequelize, DataTypes) => {
     username: DataTypes.STRING,
     password: DataTypes.STRING,
     experience: {
-      type:DataTypes.INTEGER,
+      type: DataTypes.INTEGER,
       defaultValue: 0
     },
     level: {
@@ -12,13 +12,18 @@ module.exports = (sequelize, DataTypes) => {
       defaultValue: 1
     },
     money: {
-      type:DataTypes.INTEGER,
+      type: DataTypes.INTEGER,
       defaultValue: 5000
+    },
+    energy: {
+      type: DataTypes.INTEGER,
+      defaultValue: 0
     },
     email: DataTypes.STRING,
     image: {
       type: DataTypes.STRING,
-      defaultValue: '/images/default.png'}
+      defaultValue: '/images/default.png'
+    }
   }, {});
   const Op = sequelize.Sequelize.Op
   const Item = sequelize.models.Item
@@ -37,17 +42,17 @@ module.exports = (sequelize, DataTypes) => {
   Player.prototype.getEnemies = function (offset, limit) {
     return Player.findAll({
       where: { id: { [Op.ne]: this.id }, level: { [Op.lte]: this.level + 3, [Op.gte]: this.level - 4 } },
-      include: [{ model: Item,  where: { type: 'shield' } }],
+      include: [{ model: Item, where: { type: 'shield' } }],
       limit, offset
     })
       .then(players => {
         players.forEach(p => p.calculateTotalDefense())
-        return players.map(p => ({defense:p.totalDefense,...p.get({plain:true})}))
+        return players.map(p => ({ defense: p.totalDefense, ...p.get({ plain: true }) }))
       })
   }
 
   Player.prototype.calculateTotalDefense = function () {
-    this.totalDefense = this.Items.reduce((ttlDefense, curr) => ttlDefense + curr.power + (~~(curr.trait/2)),0)
+    this.totalDefense = this.Items.reduce((ttlDefense, curr) => ttlDefense + curr.power + (~~(curr.trait / 2)), 0)
   }
 
   // Player.addHook('afterUpdate', 'freeEnergy', (players, options) => {
@@ -75,7 +80,5 @@ module.exports = (sequelize, DataTypes) => {
         if (!(player.energy >= player.level + 10)) player.save()
       }))))
   }
-
-
   return Player;
 };
