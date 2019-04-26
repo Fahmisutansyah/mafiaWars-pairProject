@@ -17,16 +17,25 @@ const schedule = require('node-schedule');
 const energySharing = schedule.scheduleJob({ second: 0 }, (time) => {
     console.log(`now we're giving energy at ${time} it actually run at ${new Date}`)
     Player.giveEnergy();
+
+    
 })
 
 const proprtyGain = schedule.scheduleJob({ second: 0 }, (time) => {
     console.log(`property is now giving money at ${time} it actually run at ${new Date}`);
     Player.giveMoneyFromProperty();
+    
 })
-
+app.locals.barCalc = require('./helpers').barCalculator
+// app.locals.hitCalc = require('./helpers').generateHit
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(session({ secret: 'tests' }))
+app.use(session({
+    secret: 'test',
+    // resave: false,
+    // saveUninitialized: false,
+    // cookie: { secure: true }
+}))
 
 app.set('view engine', 'ejs')
 app.use(express.static('public'))

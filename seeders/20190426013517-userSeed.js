@@ -1,21 +1,6 @@
 'use strict';
 const fake = require('faker')
-const bcrypt = require('bcryptjs')
-const saltRounds = 5;
-
-// const getHash = plain => new Promise((resolve, reject) => {
-//   bcrypt.genSalt(saltRounds, (err, salt) => {
-//     if (err) reject(err)
-//     else bcrypt.hash(plain, salt, (err, hash) => {
-//       if (err) reject(err)
-//       else resolve(hash)
-//     })
-//   })
-// })
-
-
-
-
+const bcrypt= require('bcrypt')
 
 const generate = size => Array.from(Array(size), (o_o,i) => ({
   username: fake.internet.userName(),
@@ -42,7 +27,7 @@ module.exports = {
         isBetaMember: false
       }], {});
     */
-    return queryInterface.bulkInsert('Players', generate(49), {});
+   return queryInterface.bulkInsert('Players', generate(55), {});
   },
 
   down: (queryInterface, Sequelize) => {
@@ -51,8 +36,7 @@ module.exports = {
       Return a promise to correctly handle asynchronicity.
 
       Example:
-     
+      return queryInterface.bulkDelete('People', null, {});
     */
-    return queryInterface.bulkDelete('Players', null, {});
   }
 };

@@ -1,22 +1,24 @@
 'use strict';
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('PlayerItems', {
+    return queryInterface.createTable('Messages', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      playerId: {
-        type: Sequelize.INTEGER        
+      title: {
+        type: Sequelize.STRING
       },
-      itemId: {
-        type: Sequelize.INTEGER        
+      content: {
+        type: Sequelize.TEXT
       },
-      mastery: {
-        type: Sequelize.INTEGER,
-        defaultValue:50        
+      senderId: {
+        type: Sequelize.INTEGER
+      },
+      recipientId: {
+        type: Sequelize.INTEGER
       },
       createdAt: {
         allowNull: false,
@@ -29,6 +31,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('PlayerItems');
+    return queryInterface.dropTable('Messages');
   }
 };
