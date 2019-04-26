@@ -19,7 +19,9 @@ module.exports = {
     trait: 60,
     price: 200,
     minLevel: 1,
-    img: "/images/cardboard1.png"
+    img: "/images/cardboard1.png",
+    createdAt : new Date,
+    updatedAt: new Date
   },{
     name: 'Kithcen Knife',
     type: "weapon",
@@ -27,7 +29,9 @@ module.exports = {
     trait: 60,
     price: 200,
     minLevel: 1,
-    img: "/images/kitchenKnife.png"
+    img: "/images/kitchenKnife.png",
+    createdAt : new Date,
+    updatedAt: new Date
   },{
     name: 'Glock 17',
     type: "weapon",
@@ -35,7 +39,9 @@ module.exports = {
     trait: 50,
     price: 450,
     minLevel: 3,
-    img: "/images/glock17.png"
+    img: "/images/glock17.png",
+    createdAt : new Date,
+    updatedAt: new Date
   }
 ], {});
   },
