@@ -19,7 +19,7 @@ module.exports = {
     */
    console.log(generate(5))
    
-   return queryInterface.bulkInsert('PlayerProperties', generate(5), {});
+   return queryInterface.bulkInsert('PlayerProperties', generate(150), {});
   },
 
   down: (queryInterface, Sequelize) => {

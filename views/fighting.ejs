@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('../partials/test/head')%>
+
+  <body>
+    <h5>Plan Your Attack, Brutalize your Enemy!!</h5>
+    <h6><%= topMessage %></h6>
+    <h6><%= turn %> turn(s) left </h6>
+    <form method="POST" action="/fight/fighting">
+      <div class="row">
+        <div class="col s12 m6">
+          <div class="card blue-grey darken-1">
+            <div class="card-content white-text">
+              <span class="card-title"><%= player.username %></span>
+              <div class="row">
+                <div class="col s6"></div>
+                <div class="col s6"></div>
+              </div>
+            </div>
+            <div class="card-action" <%=(status==='END')?`style="display: hidden"`:'' %>>
+              <input
+                class="btn tooltipped"
+                data-position="bottom"
+                data-tooltip="Regular attack, that use your entire weapon to diminish your enemy defense "
+                type="submit"
+                name="attack"
+                value="regular"
+              />
+              <input
+                class="btn tooltipped"
+                data-position="bottom"
+                data-tooltip="Power Attack, take some of your energy"
+                type="submit"
+                name="attack"
+                value="power"
+              />
+              <input
+                class="btn tooltipped"
+                data-position="bottom"
+                data-tooltip="Stealth attack, halves the attack power, but higher chance to hit "
+                type="submit"
+                name="attack"
+                value="stealth"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <% if (status === 'END' ) { %> 
+        <%- include('../partials/test/linkBack',{player,enemy})%>
+      <% }%>
+
+      <% if (msgs.length>0) { %> 
+        <%- include('../partials/test/battleM',{msgs})%>
+      <% }%>
+
+      <div class="row">
+        <div class="col s12 m6">
+          <div class="card blue-grey darken-1">
+            <div class="card-content white-text">
+              <span class="card-title"><%= enemy.username %></span>
+              <p>Attack me if you can..haha ha ha</p>
+              <p><%= enemy.defense %>  <%= enemy.inHit %></p>
+            </div>
+            <div class="card-action">
+              <div class="progress">
+                <div
+                  class="determinate"
+                  style="width: <%= barCalc(enemy.defense,enemy.inHit)%>%">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+    <%- include('../partials/test/inits')%>
+  </body>
+</html>

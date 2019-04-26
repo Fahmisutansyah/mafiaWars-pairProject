@@ -23,6 +23,9 @@ module.exports = {
       counter: {
         type: Sequelize.INTEGER
       },
+      result: {
+        type: Sequelize.STRING
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

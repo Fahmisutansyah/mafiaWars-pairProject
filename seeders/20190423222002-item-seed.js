@@ -2,7 +2,7 @@
 const faker = require('faker')
 
 // const generate = {}
-const basePrice=100
+const basePrice=200
 const basePower=5
 
 
@@ -43,7 +43,7 @@ module.exports = {
 
 
 
-    return queryInterface.bulkInsert('Items', generate(200), {});
+    return queryInterface.bulkInsert('Items', generate(150), {});
   },
 
   down: (queryInterface, Sequelize) => {
