@@ -1,11 +1,19 @@
 'use strict';
-const generate = size => Array.from(Array(size),((_, i) => ({
-  playerId: i%50+65,
-  itemId: i%12+166,
-  mastery: ~~((Math.random()*65)+30),
+const fake = require('faker')
+const bcrypt= require('bcrypt')
+
+const generate = size => Array.from(Array(size), (o_o,i) => ({
+  username: fake.internet.userName(),
+  password: bcrypt.hashSync('123456', 5),
+  experience: 0,
+  level: (i%50) + 1,
+  energy: 0,
+  money: 0,
+  email: fake.internet.email(),
+  image: null,
   createdAt: new Date,
   updatedAt: new Date
-})))
+}))
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
@@ -19,9 +27,7 @@ module.exports = {
         isBetaMember: false
       }], {});
     */
-    console.log(generate(5))
-
-    return queryInterface.bulkInsert('PlayerItems', generate(200), {});
+   return queryInterface.bulkInsert('Players', generate(55), {});
   },
 
   down: (queryInterface, Sequelize) => {
@@ -32,6 +38,5 @@ module.exports = {
       Example:
       return queryInterface.bulkDelete('People', null, {});
     */
-    return queryInterface.bulkDelete('PlayerItems', null, {});
   }
 };
