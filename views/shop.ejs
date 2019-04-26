@@ -5,18 +5,93 @@
 </head>
 <body background="/images/loginn.jpg" style="background-size: cover; position:relative">
     <%- include('../partials/navbar') %>
-    <div class="container">
+    <% if (err) { %>
+        <%- include('../partials/err',err) %>
+    <% } %>
+    <% if (notif) { %>
+        <%- include('../partials/notif',notif) %>
+    <% } %>
+    <div class="container" style="width: 90%">
+        <div class="row center-align" style="margin-top: 2em">
+            <div class="col s5">
+            </div>
+            <div class="col s2">
+                    <a href="/home"><img src="<%= player.image %>" style="width: 70%;object-fit:contain;background-color: grey;border-radius:101px"></a>
+            </div>
+            <div class="col s5">     
+            </div>
+        </div>
+        <div class="row center-align">
+            <img src='/images/money.png' style="width: 3%;">
+            <h6 style="color:gold" ><%= player.money %></h6>
+        </div>
         <div class='row'>
             <div class="col s6">
-
+                <div style="max-height: 385px;height: 385px;overflow:scroll;background-color:#d8d8d8;border-radius: 20px;">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>Name</th>
+                                    <th>Power</th>
+                                    <th>Price</th>
+                                    <th>Min-Level</th>
+                                    <th colspan="2">Option</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            <% items.forEach(element=>{ %>
+                                <tr>
+                                    <td style="width: 8em;height: 20px"><img src="<%=element.img %> " style="width: 63%;object-fit: contain;margin-left: 1em;"></td>
+                                    <td><%= element.name %></td>
+                                    <td><%= element.power %></td>
+                                    <td><%= element.price %></td>
+                                    <td><%= element.minLevel %></td>
+                                    <% if(ownedItems.includes(element.name)){%>
+                                        <td><a class="btn disabled" style="width:79%">owned</a><a class="waves-effect waves-light btn"href="/shop/sell/item/<%= element.id%>" style="background-color: black;width:79%">Sell</a></td>
+                                        <%}else{ %>
+                                        <td><a class="waves-effect waves-light btn" style="background-color:black;width:79%" href="/shop/buy/item/<%= element.id%>">Buy</a></td>
+                                    <% } %>
+                                </tr>
+                            <% }) %> 
+                        </tbody>
+                    </table>
+                </div>
             </div>
             <div class="col s6">
-
+                <div style="max-height: 385px;height: 385px;overflow:scroll;background-color:#d8d8d8;border-radius: 20px;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Name</th>
+                                <th>Price</th>
+                                <th>Income</th>
+                                <th colspan="2">Option</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% properties.forEach(element=>{ %>
+                                <tr>
+                                    <td style="width: 8em;height: 20px"><img src="<%=element.img %> " style="width: 63%;object-fit: contain;margin-left: 1em;"></td>
+                                    <td><%= element.name %></td>
+                                    <td><%= element.price %></td>
+                                    <td><%= element.price*0.01 %></td>
+                                    <% if(ownedProp.includes(element.name)){%>
+                                        <td><a class="btn disabled">owned</a><a class="waves-effect waves-light btn"href="/shop/sell/prop/<%= element.id%>" style="background-color: black">Sell</a></td>
+                                    <%}else{ %>
+                                        <td><a class="waves-effect waves-light btn" style="background-color:black;width:88%" href="/shop/buy/prop/<%= element.id%>">Buy</a></td>
+                                    <% } %>
+                                </tr>
+                            <% }) %> 
+                        </tbody>
+                    </table>
+                </div>
             </div>
 
         </div>
     </div>
     
-    
+    <%- include('../partials/script')%>    
 </body>
 </html>

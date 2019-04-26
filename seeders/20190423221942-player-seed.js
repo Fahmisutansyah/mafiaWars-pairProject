@@ -17,11 +17,12 @@ const saltRounds = 5;
 
 
 
-const generate = size => Array.from(Array(size), o_o => ({
-  username: fake.name.findName(),
-  password: bcrypt.hashSync('123456', 10),
+const generate = size => Array.from(Array(size), (o_o,i) => ({
+  username: fake.internet.userName(),
+  password: bcrypt.hashSync('123456', 5),
   experience: 0,
-  level: 0,
+  level: (i%50) + 1,
+  energy: 0,
   money: 0,
   email: fake.internet.email(),
   image: null,
@@ -41,7 +42,7 @@ module.exports = {
         isBetaMember: false
       }], {});
     */
-    return queryInterface.bulkInsert('Players', generate(30), {});
+    return queryInterface.bulkInsert('Players', generate(100), {});
   },
 
   down: (queryInterface, Sequelize) => {
