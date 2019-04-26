@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Item.associate = function(models) {
     // associations can be defined here
-    Item.belongsToMany(models.Player,{through:'PlayerItems',foreignKey:'itemId'})
+    Item.belongsToMany(models.Player,{through:models.PlayerItem,foreignKey:'itemId'})
   };
   return Item;
 };

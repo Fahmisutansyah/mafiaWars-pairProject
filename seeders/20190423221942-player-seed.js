@@ -42,7 +42,7 @@ module.exports = {
         isBetaMember: false
       }], {});
     */
-    return queryInterface.bulkInsert('Players', generate(100), {});
+    return queryInterface.bulkInsert('Players', generate(49), {});
   },
 
   down: (queryInterface, Sequelize) => {

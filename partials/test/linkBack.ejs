@@ -1,0 +1,31 @@
+     <div class="row">
+        <div class="col s12 m6">
+          <div class="card blue-grey darken-1">
+            <div class="card-content white-text">
+              <span class="card-title">hit info</span>
+              <p>
+                fight another battle, or send a message to your enemy....
+              </p>
+            </div>
+            <div class="card-action">
+        <button data-target="modal1" class="btn modal-trigger">send some message</button>              
+        <a href='/fight' data-target="modal1" class="btn">Fight Again</a>              
+            </div>
+          </div>
+        </div>
+      </div>
+
+<div id="modal1" class="modal">
+    <div  class="modal-content">
+    <form action="/message/quick" method='Post'>
+       <p>message to <%= enemy.username %> </p> 
+      <input type='text' name = 'title' placeholder="what is the title of your message"/>
+      <input type='text' name = 'content' placeholder="write your message here...."/>
+      <input type='hidden' name = 'senderId' value='<%= player.id %>'/>
+      <input type='hidden' name = 'recipientId' value='<%= enemy.id %>'/>
+    </div>
+    <div class="modal-footer">
+      <button type='submit' class="modal-close waves-effect waves-green btn-flat">send</button>
+    <form>
+    </div>
+  </div>
