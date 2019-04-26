@@ -1,7 +1,7 @@
 'use strict';
 const generate = size => Array.from(Array(size),((_, i) => ({
-  playerId: i%50+65,
-  itemId: i%12+166,
+  playerId: i%50,
+  itemId: i%45,
   mastery: ~~((Math.random()*65)+30),
   createdAt: new Date,
   updatedAt: new Date
@@ -21,7 +21,7 @@ module.exports = {
     */
     console.log(generate(5))
 
-    return queryInterface.bulkInsert('PlayerItems', generate(200), {});
+    return queryInterface.bulkInsert('PlayerItems', generate(100), {});
   },
 
   down: (queryInterface, Sequelize) => {

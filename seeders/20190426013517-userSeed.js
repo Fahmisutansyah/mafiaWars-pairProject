@@ -10,7 +10,7 @@ const generate = size => Array.from(Array(size), (o_o,i) => ({
   energy: 0,
   money: 0,
   email: fake.internet.email(),
-  image: null,
+  image: '/images/default.png',
   createdAt: new Date,
   updatedAt: new Date
 }))
