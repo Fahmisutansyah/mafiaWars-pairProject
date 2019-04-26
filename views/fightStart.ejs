@@ -2,7 +2,11 @@
 <html lang="en">
 <%- include('../partials/test/head')%>
 
-<body>
+<body background="/images/fightBackground.jpeg" style="background-size: cover; position:relative">
+  <%- include('../partials/navbar') %>
+    <% if (err) { %>
+      <%- include('../partials/err',err) %>
+    <% } %>
   <div class="container">
     <div class="row valign-wrapper">
       <div class="col s6 offset-s3 valign">
@@ -11,7 +15,7 @@
         </div>
         <form action="/fight" method="POST" class="valign">
           <!-- <input type='hidden' name='playerId' > -->
-          <select multiple name="weapons"><% weapons.forEach((weapon,i)=>{ %>
+          <select multiple name="weapons" ><% weapons.forEach((weapon,i)=>{ %>
             <option value="<%= weapon.id %>" <%= (!i)?`selected`:``.repeat(0) %> > <%= weapon.name %> </option>
             <% })%>
           </select>

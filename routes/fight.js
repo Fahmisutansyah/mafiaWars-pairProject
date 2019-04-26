@@ -23,6 +23,7 @@ routes.get('/', function (req, res) {
             //     enemies
             // })
             // console.log(player.Items.map(it => ({ id: it.id, power: it.power, trait: it.trait })))
+            console.log(enemies)
             req.session.game = {}
             req.session.game.weapons = (weapons.length) ? weapons.map(it => ({ id: it.id, power: it.power, mastery: it.PlayerItem.mastery, name: it.name }))
                 : []
@@ -31,7 +32,8 @@ routes.get('/', function (req, res) {
             res.render('../views/fightStart.ejs', {
                 title: `fighting pit`,
                 weapons,
-                enemies
+                enemies,
+                err : req.query.err
             })
         })
         .catch(err => {
@@ -87,7 +89,7 @@ routes.post('/', function (req, res) {
 
         else {
             //insuffincient energy
-            res.redirect(`/fight?insufficientEnergy=1`)
+            res.redirect(`/fight?err=Insufficient Energy!`)
         }
     })
 

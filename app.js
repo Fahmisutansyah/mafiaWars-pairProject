@@ -21,7 +21,7 @@ const energySharing = schedule.scheduleJob({ second: 0 }, (time) => {
     
 })
 
-const proprtyGain = schedule.scheduleJob({ second: 45 }, (time) => {
+const proprtyGain = schedule.scheduleJob({ second: 0 }, (time) => {
     console.log(`property is now giving money at ${time} it actually run at ${new Date}`);
     Player.giveMoneyFromProperty();
     
@@ -45,6 +45,7 @@ app.use('/logout', require('./routes/logout'))
 
 app.use(checkLogin)
 app.use('/home', require('./routes/home'))
+app.use('/shop',require('./routes/shop'))
 app.use('/fight', require('./routes/fight'))
 
 app.listen(port, () => {

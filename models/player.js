@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     energy: {
       type: DataTypes.INTEGER,
-      defaultValue: 0
+      defaultValue: 11
     },
     email: DataTypes.STRING,
     image: {
